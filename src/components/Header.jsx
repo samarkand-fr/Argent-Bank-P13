@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/img/argentBankLogo.png';
-import SignInButton from './SignInButton'; 
-import LogoutButton from './LogoutButton'; 
+import SignInButton from './SignInButton';
+import LogoutButton from './LogoutButton';
 
 const Header = () => {
   const selectLogin = (state) => state.getUser.isLogged;
@@ -16,25 +16,20 @@ const Header = () => {
   return (
     <HeaderStyle>
       <NavWrapper>
-        <NavLinkElements exact="true" to="/">
+        <NavLink exact="true" to="/">
           <h1 className="sr-only">Argent Bank</h1>
           <Logo src={logo} alt="Argent Bank Logo" />
-        </NavLinkElements>
-       {!login ? (
+        </NavLink>
+        {!login ? (
           <NavLinksWrapper>
-            <NavLinkElements exact="true" to="/sign-in">
-              {/* <Icon className="fa fa-user-circle" />
-              <Paragraph >Sign In</Paragraph> */}
-              <SignInButton layout="row" />
-
-            </NavLinkElements>
+            <SignInButton layout="row" />{/* the SignInButton component */}
           </NavLinksWrapper>
         ) : (
           <NavLinksWrapper>
-            <NavLinkElements exact="true" to="/user">
+            <NavLink exact="true" to="/user">
               <Icon className="fa fa-user-circle" />
               <Paragraph>{user.body.firstName}</Paragraph>
-            </NavLinkElements>
+            </NavLink>
             <LogoutButton /> {/* the LogoutButton component */}
           </NavLinksWrapper>
         )}
@@ -43,10 +38,10 @@ const Header = () => {
   );
 };
 
-
 Header.propTypes = {
   //  PropTypes here
 };
+
 
 export default Header;
 
@@ -66,12 +61,6 @@ const NavWrapper = styled.nav`
   }
 `;
 
-const NavLinkElements = styled(NavLink)`
-  font-weight: 700;
-  font-size: 1.1rem;
-  display: flex;
-  align-items: center;
-`;
 
 const Icon = styled.i`
   font-size: 2rem;
