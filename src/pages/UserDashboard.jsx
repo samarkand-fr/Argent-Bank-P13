@@ -7,25 +7,29 @@ import Account from '../components/Account'
 // API calls
 import { editUser } from '../Redux/services/API'
 import styled from 'styled-components'
+import { capitalizeFirstChar } from '../utils'; 
 
 
 
 const User = () => {
-
+ // State
   const [editName, setEditName] = useState(false)
   const [newFirstName, setNewFirstName] = useState('')
   const [newLastName, setNewLastName] = useState('')
+
+   // Redux
   const selectUser = (state) => state.getUser.user.body
   const user = useSelector(selectUser)
   const dispatch = useDispatch()
-
   const { firstName, lastName } = user || {};
 
-  const editUserName = () => {
-    dispatch(editUser(newFirstName, newLastName))
+ // Event Handlers
+  const handleSaveName = () => {
+    dispatch(editUser(capitalizeFirstChar(newFirstName), capitalizeFirstChar(newLastName)))
     setEditName(false)
   }
-
+  
+ // If no user data, navigate back to home page
   if (!user) {
     return <Navigate to="/" />;
   }
@@ -36,7 +40,7 @@ const User = () => {
         <Title >
           Welcome back
           <br />
-          {firstName} {lastName}
+          {capitalizeFirstChar(firstName)} {capitalizeFirstChar(lastName)}
         </Title>
         {editName ? (
           <EditNameWrapper>
@@ -59,7 +63,7 @@ const User = () => {
               />
             </InputWrapper>
             <ButtonsWrapper>
-              <InputButtonsStyle type="submit" value="Save" onClick={editUserName} />
+              <InputButtonsStyle type="submit" value="Save" onClick={handleSaveName} />
               <InputButtonsStyle
                 type="button"
                 value="Cancel"
