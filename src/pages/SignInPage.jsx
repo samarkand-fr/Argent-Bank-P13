@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie'; 
 // API calls
 import { getToken } from '../Redux/services/API';
 import styled from 'styled-components';
 import LogInForm from '../components/LogInForm';
 import SignInButton from '../components/SignInButton';
+
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -14,20 +16,21 @@ const SignIn = () => {
   const [invalidFields, setInvalidFields] = useState('');
 
   const dispatch = useDispatch();
-
   const message = useSelector((state) => state.getUser.user.status);
   const tokenExist = useSelector((state) => state.token.tokenExist);
 
+  const [cookies, setCookie, removeCookie] = useCookies(); // Initialize cookies
+
   useEffect(() => {
-    // Load the stored email and password from localStorage
-    const storedEmail = localStorage.getItem('rememberedEmail');
-    const storedPassword = localStorage.getItem('rememberedPassword');
+    // Load the stored email and password from cookies
+    const storedEmail = cookies.rememberedEmail;
+    const storedPassword = cookies.rememberedPassword;
     if (storedEmail && storedPassword) {
       setEmail(storedEmail);
       setPassword(storedPassword);
       setRememberMe(true);
     }
-  }, []);
+  }, [cookies]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,13 +40,13 @@ const SignIn = () => {
       return setInvalidFields('Please fill in all fields ');
     } else {
       if (rememberMe) {
-        // If Remember Me is checked, store the email and password in localStorage
-        localStorage.setItem('rememberedEmail', email);
-        localStorage.setItem('rememberedPassword', password);
+        // If Remember Me is checked, store the email and password in cookies
+        setCookie('rememberedEmail', email, { maxAge: 7 * 24 * 60 * 60 }); // Expires in 7 days
+        setCookie('rememberedPassword', password, { maxAge: 7 * 24 * 60 * 60 });
       } else {
-        // If Remember Me is not checked, remove the stored email and password from localStorage
-        localStorage.removeItem('rememberedEmail');
-        localStorage.removeItem('rememberedPassword');
+        // If Remember Me is not checked, remove the stored email and password from cookies
+        removeCookie('rememberedEmail');
+        removeCookie('rememberedPassword');
       }
       dispatch(getToken(email, password));
     }
