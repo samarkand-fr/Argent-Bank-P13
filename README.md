@@ -23,12 +23,12 @@ The Argent Bank Web Application is designed to provide users with a seamless and
 2.  **$\color{olivedrab}{Account Management:}$**
     
     -   Once logged in, users can view their account details and balance.
-    -   Users can update their profile information, including first name, last name, and contact details.
+    -   Users can update their profile information, including first name, last name.
     -   The application ensures that only the account owner can access and modify their profile information.
 3.  **$\color{olivedrab}{Responsive Design:}$**
     
     -   The application is fully responsive and optimized for various devices, including desktops, tablets, and mobile phones.
-    -   Users can access their accounts and perform transactions seamlessly from any device.
+    -   Users can access their accounts from any device.
 4.  **$\color{olivedrab}{Transaction History:}$**
     
     -   Users can view their transaction history for the current month.
