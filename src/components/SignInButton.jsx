@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import PropTypes from 'prop-types'; 
 
 /**
  * A reusable component that renders a "Sign In" button.
@@ -13,6 +14,10 @@ const SignInButton = ({layout}) => {
       <SignInTitle>Sign In</SignInTitle>
     </NavLinkElements>
   );
+};
+
+SignInButton.propTypes = {
+  layout: PropTypes.oneOf(['column', 'row']).isRequired,
 };
 
 export default SignInButton;
