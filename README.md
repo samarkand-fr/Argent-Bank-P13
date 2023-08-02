@@ -1,70 +1,69 @@
-# Getting Started with Create React App
+# $\color{green}{Argent Bank }$
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![](./src/assets/img/argentBankLogo.png)
 
-## Available Scripts
+## $\color{green}{Purpose}$
 
-In the project directory, you can run:
+ This web application aims to provide user authentication and account management features for Argent Bank's customers.
 
-### `npm start`
+## $\color{green}{Objectif}$
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+-   Create a complete and responsive web application using React
+-   Utilize Redux to manage the state of the entire application
+-   Specify API endpoints for website's transactions part using Swagger
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## $\color{green}{Features}$
+The Argent Bank Web Application is designed to provide users with a seamless and secure banking experience. It offers various features to enhance user convenience and account management. Below are the key features of the application:
 
-### `npm test`
+1.  **$\color{olivedrab}{User Authentication:}$**
+    
+    -   Users can log in securely to their Argent Bank accounts using their credentials.
+    -   The application validates user credentials and provides access to their accounts upon successful authentication.
+    -   In case of invalid credentials, appropriate error messages are displayed to the user.
+2.  **$\color{olivedrab}{Account Management:}$**
+    
+    -   Once logged in, users can view their account details and balance.
+    -   Users can update their profile information, including first name, last name, and contact details.
+    -   The application ensures that only the account owner can access and modify their profile information.
+3.  **$\color{olivedrab}{Responsive Design:}$**
+    
+    -   The application is fully responsive and optimized for various devices, including desktops, tablets, and mobile phones.
+    -   Users can access their accounts and perform transactions seamlessly from any device.
+4.  **$\color{olivedrab}{Transaction History:}$**
+    
+    -   Users can view their transaction history for the current month.
+    -   Transactions are grouped by accounts for easy tracking.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+10.  **$\color{olivedrab}{Error Handling :}$**
+    
+     -   The application provides informative error messages to users in case of invalid inputs or server errors.
+   
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## $\color{green}{Prerequisites}$
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+*  **Node.js**: Ensure that you have Node.js installed on your machine. You can download it from the official Node.js website and follow the installation instructions.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1.  **Install and launch the back-end:**
+    
+    -   Clone the backend repository: https://github.com/samarkand-fr/Project-13-Bank-API.git
+    -   Navigate to the backend directory: `cd Project-10-Bank-API`
+    -   Run `npm install` to install dependencies
+    -   Start the local dev server (port 3001): `npm run dev:server`
+    -   Populate the database with two users: `npm run populate-db`
+2.  **Install and launch the front-end:**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    -  **Clone the repository**:
+git clone https://github.com/samarkand-fr/Argent-Bank-P13.git
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+      -  **Run the project**:
+         -  Navigate to the front-end directory: cd   Argent-Bank-P13
+         -  Install the project dependencies by running `npm install`.
+         - Start the development server by running `npm start`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+The project will be accessible at [http://localhost:3000](http://localhost:3000/) in your browser.
+  
+**Note:** For the Swagger API documentation, please refer to [SwaggerHub: Transactions API Model]
+https://editor.swagger.io/
