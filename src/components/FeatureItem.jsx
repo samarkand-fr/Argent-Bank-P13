@@ -1,21 +1,25 @@
 
 import React from 'react'
 import PropTypes from 'prop-types'
-
 import styled from 'styled-components'
 
+/**
+ * Component representing an individual feature item.
+ * @param {Object} props - Props containing icon, alt, title, and content of the feature.
+ * @returns {JSX.Element} - The rendered JSX element representing the feature item.
+ */
 const FeatureItem = ({ icon, alt, title, content }) => {
 
   return (
     <FeatureItemStyle>
-      <FeatureImage  src={icon} alt={alt} />
-      <FeatureTitle >{title}</FeatureTitle>
-      <FeatureText >{content}</FeatureText>
+      <FeatureImage  src={icon} alt={alt} />{/* Display the feature icon */}
+      <FeatureTitle >{title}</FeatureTitle> {/* Display the feature title */}
+      <FeatureText >{content}</FeatureText> {/* Display the feature content */}
     </FeatureItemStyle>
   )
 }
 
-
+// Prop types 
 FeatureItem.propTypes = {
   icon: PropTypes.string.isRequired,
   alt: PropTypes.string.isRequired,
@@ -23,11 +27,9 @@ FeatureItem.propTypes = {
   content: PropTypes.string.isRequired,
 }
 
-
-
 export default FeatureItem
 
-
+// Styled components
 const FeatureItemStyle = styled.article`
   flex: 1;
   padding: 2.5rem;
@@ -40,7 +42,6 @@ const FeatureItemStyle = styled.article`
   @media (max-width: 520px) {
     padding: 2rem 1.3rem 0 1.3rem;
   }
-
 
 `
 const FeatureImage = styled.img`

@@ -2,6 +2,10 @@ import chat from '../assets/img/icon-chat.png'
 import money from '../assets/img/icon-money.png'
 import security from '../assets/img/icon-security.png'
 
+// The features array contains three objects, 
+// each representing a different feature .
+// each feature has its icon, title, and content. 
+
 const features = [
   {
     icon: chat,

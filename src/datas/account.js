@@ -1,3 +1,5 @@
+// The account array contains three objects, each representing a different account entry. 
+
 const account = [
     {
       title: 'Argent Bank Checking (x8349)',

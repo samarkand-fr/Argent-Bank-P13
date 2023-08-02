@@ -2,6 +2,10 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
+/**
+ * A reusable component that renders a "Sign In" button.
+ * @param {string} layout - The layout direction for the button (either 'column' or 'row').
+ */
 const SignInButton = ({layout}) => {
   return (
     <NavLinkElements exact="true" to="/sign-in" layout={layout}>
@@ -13,6 +17,10 @@ const SignInButton = ({layout}) => {
 
 export default SignInButton;
 
+/**
+ * Styled NavLink element that represents the "Sign In" button.
+ * @param {string} layout - The layout direction for the button (either 'column' or 'row').
+ */
 const NavLinkElements = styled(NavLink)`
   font-weight: 700;
   font-size: 1.1rem;

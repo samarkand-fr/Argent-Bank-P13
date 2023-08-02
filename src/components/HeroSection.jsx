@@ -1,9 +1,11 @@
-
 import React from 'react'
-
 import styled from 'styled-components'
 import image from '../assets/img/bank-tree.jpeg'
 
+/**
+ * Hero component displaying promotional content for a bank.
+ * @returns {JSX.Element} - The rendered JSX element representing the hero section.
+ */
 const Hero = () => {
 
   return (
@@ -18,11 +20,9 @@ const Hero = () => {
     </HeroStyle>
   )
 }
-
-
 export default Hero
 
-
+// styled components
 const HeroStyle = styled.header`
   background-image: url(${image});
   background-position: 0 33%;

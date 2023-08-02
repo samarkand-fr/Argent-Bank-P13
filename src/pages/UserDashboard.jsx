@@ -9,8 +9,9 @@ import { editUser } from '../Redux/services/API'
 import styled from 'styled-components'
 import { capitalizeFirstChar } from '../utils'; 
 
-
-
+/**
+ * User component to display user information and account details.
+ */
 const User = () => {
  // State
   const [editName, setEditName] = useState(false)
@@ -24,11 +25,14 @@ const User = () => {
   const { firstName, lastName } = user || {};
 
  // Event Handlers
+   /**
+   * Handles saving the edited name to the user profile.
+   */
   const handleSaveName = () => {
     dispatch(editUser(capitalizeFirstChar(newFirstName), capitalizeFirstChar(newLastName)))
     setEditName(false)
   }
-  
+
  // If no user data, navigate back to home page
   if (!user) {
     return <Navigate to="/" />;
@@ -102,8 +106,7 @@ const User = () => {
 
 export default User
 
-
-
+// Styled components 
 
 export const UserHeaderMain = styled.header`
   display: flex;

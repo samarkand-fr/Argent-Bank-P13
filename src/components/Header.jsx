@@ -6,6 +6,12 @@ import logo from '../assets/img/argentBankLogo.png';
 import SignInButton from './SignInButton';
 import LogoutButton from './LogoutButton';
 
+/**
+ * Header component displaying the Argent Bank logo and navigation links.
+ * If the user is logged in, it displays the user's name and a logout button.
+ * If the user is not logged in, it displays a sign-in button.
+ * @returns {JSX.Element} - The rendered JSX element representing the header.
+ */
 const Header = () => {
   const selectLogin = (state) => state.getUser.isLogged;
   const login = useSelector(selectLogin);
@@ -16,21 +22,24 @@ const Header = () => {
   return (
     <HeaderStyle>
       <NavWrapper>
+         {/* Argent Bank Logo */}
         <NavLink exact="true" to="/">
-          <h1 className="sr-only">Argent Bank</h1>
+          <h1 className="sr-only">Argent Bank</h1> 
           <Logo src={logo} alt="Argent Bank Logo" />
         </NavLink>
         {!login ? (
+            // Display SignInButton component if not logged in
           <NavLinksWrapper>
-            <SignInButton layout="row" />{/* the SignInButton component */}
+            <SignInButton layout="row" />
           </NavLinksWrapper>
         ) : (
+           // Display User Name and LogoutButton component if logged in
           <NavLinksWrapper>
             <NavLink exact="true" to="/user">
               <Icon className="fa fa-user-circle" />
               <Paragraph>{user.body.firstName}</Paragraph>
             </NavLink>
-            <LogoutButton /> {/* the LogoutButton component */}
+            <LogoutButton /> 
           </NavLinksWrapper>
         )}
       </NavWrapper>
@@ -38,12 +47,10 @@ const Header = () => {
   );
 };
 
-Header.propTypes = {
-  //  PropTypes here
-};
 
 
 export default Header;
+
 
 const HeaderStyle = styled.header`
   box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.15);

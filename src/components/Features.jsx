@@ -1,13 +1,18 @@
 import React from 'react'
 // datas imports
-import features from '../datas/features'
-import Feature from './FeatureItem'
+import features from '../datas/features';//An array of feature objects
+import Feature from './FeatureItem';//A component to display each feature item
 import styled from "styled-components";
 
+/**
+ * Features component displaying a list of features.
+ * Each feature is rendered using the Feature component.
+ * @returns {JSX.Element} - The rendered JSX element representing the features section.
+ */
 const Features = () => {
   return (
     <FeaturesStyle>
-      <h2 className="sr-only">Features</h2>
+      <h2 className="sr-only">Features</h2> {/* A visually hidden heading for accessibility */}
       {features.map((feature, index) => (
         <Feature
           key={index}
@@ -23,6 +28,8 @@ const Features = () => {
 
 
 export default Features
+
+// Styled components 
 
 export const FeaturesStyle = styled.section`
   display: flex;

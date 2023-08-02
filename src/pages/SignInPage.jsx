@@ -8,7 +8,9 @@ import styled from 'styled-components';
 import LogInForm from '../components/LogInForm';
 import SignInButton from '../components/SignInButton';
 
-
+/**
+ * Sign-in component for user authentication.
+ */
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -20,7 +22,17 @@ const SignIn = () => {
   const tokenExist = useSelector((state) => state.token.tokenExist);
 
   const [cookies, setCookie, removeCookie] = useCookies(); // Initialize cookies
+ // Redux selector for the token value
+ const tokenValue = useSelector((state) => state.token.token);
+ useEffect(() => {
+  if (tokenValue) {
+    console.log('Token Value:', tokenValue);
+  }
+}, [tokenValue]);
 
+/**
+   * Load the stored email and password from cookies when the component mounts.
+   */
   useEffect(() => {
     // Load the stored email and password from cookies
     const storedEmail = cookies.rememberedEmail;
@@ -32,11 +44,15 @@ const SignIn = () => {
     }
   }, [cookies]);
 
+    /**
+   * Handle the form submission when the user clicks the Sign In button.
+   * @param {Object} event - The form submission event.
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     setInvalidFields('');
 
-    if (email === '' || password === '') {
+    if (!email || !password)  {
       return setInvalidFields('Please fill in all fields ');
     } else {
       if (rememberMe) {
@@ -52,10 +68,9 @@ const SignIn = () => {
     }
   };
 
-  // Add console logs
-  console.log('message:', message);
-  console.log('tokenExist:', tokenExist);
-
+  /**
+   * If the user is authenticated, redirect to the user page.
+   */
   if (message === 200) {
     return <Navigate to="/user" />;
   }
@@ -107,6 +122,7 @@ const SignIn = () => {
 
 export default SignIn;
 
+// Styled components 
 const AppContainer = styled.div`
   display: flex;
   flex-direction: column;
