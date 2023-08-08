@@ -23,6 +23,11 @@ paths:
           description: The month for which to retrieve the transactions (the current month)
           default: "2023-08"
           required: true
+        - in: header
+          name: Authorization
+          type: string
+          description: JWT token for authentication
+          required: true
       responses:
         200:
           description: List of transactions for the specified month
@@ -32,29 +37,6 @@ paths:
               $ref: "#/definitions/Transaction"
         400:
           description: Invalid request
-      security:
-        - JWT: []
-
-    post:
-      tags:
-        - Transactions
-      summary: Add a new transaction
-      parameters:
-        - in: header
-          name: Authorization
-          type: string
-          description: JWT token for authentication
-          required: true
-        - in: body
-          name: body
-          schema:
-            $ref: "#/definitions/TransactionInput"
-          required: true
-      responses:
-        200:
-          description: Transaction successfully created
-        400:
-          description: Invalid request (incorrect transaction data)
       security:
         - JWT: []
 
@@ -69,6 +51,11 @@ paths:
           type: string
           required: true
           description: Transaction identifier
+        - in: header
+          name: Authorization
+          type: string
+          description: JWT token for authentication
+          required: true
       responses:
         200:
           description: Transaction details
@@ -76,6 +63,10 @@ paths:
             $ref: "#/definitions/Transaction"
         404:
           description: Transaction not found
+        400:
+          description: Invalid values
+        500:
+          description: Internal Server Error
       security:
         - JWT: []
 
@@ -95,42 +86,29 @@ paths:
           description: JWT token for authentication
           required: true
         - in: body
-          name: body
+          name: details
           schema:
-            $ref: "#/definitions/TransactionInput"
+            $ref: "#/definitions/TransactionUpdate"
           required: true
       responses:
         200:
           description: Transaction successfully updated
+          schema:
+            $ref: "#/definitions/UpdatedTransaction"
         400:
           description: Invalid request (incorrect transaction data)
         404:
           description: Transaction not found
+        500:
+          description: Internal Server Error
       security:
         - JWT: []
 
-    delete:
-      tags:
-        - Transactions
-      summary: Delete an existing transaction
-      parameters:
-        - in: path
-          name: transactionId
-          type: string
-          required: true
-          description: Transaction identifier
-        - in: header
-          name: Authorization
-          type: string
-          description: JWT token for authentication
-          required: true
-      responses:
-        200:
-          description: Transaction successfully deleted
-        404:
-          description: Transaction not found
-      security:
-        - JWT: []
+securityDefinitions:
+  JWT:
+    type: apiKey
+    name: Authorization
+    in: header
 
 definitions:
   Transaction:
@@ -163,35 +141,25 @@ definitions:
       - amount
       - balance
 
-  TransactionInput:
+  TransactionUpdate:
     type: object
     properties:
-      month:
+      category:
         type: string
-        description: The month of the transaction
-      date:
+        description: Transaction category
+      note:
         type: string
-        format: date
-        description: Date of the transaction
-      description:
-        type: string
-        description: Description of the transaction
-      amount:
-        type: number
-        format: float
-        description: Amount of the transaction
-      balance:
-        type: number
-        format: float
-        description: Account balance after the transaction
-    required:
-      - date
-      - description
-      - amount
-      - balance
+        description: User's notes for the transaction
 
-securityDefinitions:
-  JWT:
-    type: apiKey
-    name: Authorization
-    in: header
+  UpdatedTransaction:
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier of the transaction
+      category:
+        type: string
+        description: Updated transaction category
+      note:
+        type: string
+        description: Updated user's notes for the transaction
