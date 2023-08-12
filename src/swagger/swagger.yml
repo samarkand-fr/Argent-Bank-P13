@@ -34,7 +34,7 @@ paths:
           schema:
             type: array
             items:
-              $ref: "#/definitions/Transaction"
+              $ref: "#/definitions/TransactionWithDetails"
         400:
           description: Invalid request
       security:
@@ -60,7 +60,7 @@ paths:
         200:
           description: Transaction details
           schema:
-            $ref: "#/definitions/Transaction"
+            $ref: "#/definitions/TransactionWithDetails"
         404:
           description: Transaction not found
         400:
@@ -94,7 +94,7 @@ paths:
         200:
           description: Transaction successfully updated
           schema:
-            $ref: "#/definitions/UpdatedTransaction"
+            $ref: "#/definitions/UpdatedTransactionWithDetails"
         400:
           description: Invalid request (incorrect transaction data)
         404:
@@ -119,7 +119,7 @@ definitions:
         description: Unique identifier of the transaction
       month:
         type: string
-        description: The month of the transaction
+        description: Month of the transaction
       date:
         type: string
         format: date
@@ -144,6 +144,9 @@ definitions:
   TransactionUpdate:
     type: object
     properties:
+      transactionType:
+        type: string
+        description: Transaction type
       category:
         type: string
         description: Transaction category
@@ -157,9 +160,81 @@ definitions:
       id:
         type: string
         description: Unique identifier of the transaction
+      month:
+        type: string
+        description: Month of the transaction
+      date:
+        type: string
+        format: date
+        description: Date of the transaction
+      description:
+        type: string
+        description: Description of the transaction
+      amount:
+        type: number
+        format: float
+        description: Amount of the transaction
+      balance:
+        type: number
+        format: float
+        description: Account balance after the transaction
+      transactionType:
+        type: string
+        description: Transaction type
       category:
         type: string
         description: Updated transaction category
       note:
         type: string
         description: Updated user's notes for the transaction
+
+  TransactionWithDetails:
+    allOf:
+      - $ref: "#/definitions/Transaction"
+      - type: object
+        properties:
+          transactionType:
+            type: string
+            description: Transaction type
+          category:
+            type: string
+            description: Transaction category
+          note:
+            type: string
+            description: User's notes for the transaction
+
+  UpdatedTransactionWithDetails:
+    allOf:
+      - $ref: "#/definitions/UpdatedTransaction"
+      - type: object
+        properties:
+          id:
+            type: string
+            description: Unique identifier of the transaction
+          month:
+            type: string
+            description: Month of the transaction
+          date:
+            type: string
+            format: date
+            description: Date of the transaction
+          description:
+            type: string
+            description: Description of the transaction
+          amount:
+            type: number
+            format: float
+            description: Amount of the transaction
+          balance:
+            type: number
+            format: float
+            description: Account balance after the transaction
+          transactionType:
+            type: string
+            description: Transaction type
+          category:
+            type: string
+            description: Updated transaction category
+          note:
+            type: string
+            description: Updated user's notes for the transaction
